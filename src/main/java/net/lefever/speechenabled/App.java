@@ -1,4 +1,4 @@
-package com.valtech.speechenabled;
+package net.lefever.speechenabled;
 
 import static spark.Spark.*;
 
