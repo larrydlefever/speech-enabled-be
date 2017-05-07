@@ -39,14 +39,14 @@ public class App
     	
     	try
 		{
-    	    MultipartConfigElement multipartConfigElement = new MultipartConfigElement("/tmp");
-    	    req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
+    		MultipartConfigElement multipartConfigElement = new MultipartConfigElement("/tmp");
+    		req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
     		
-			InputStream in = req.raw().getPart("voiceInputUpload").getInputStream();			
-			File outFile = new File("/Users/user/javaProjects/speechenabled/voiceInput.wav");
-			Files.copy(in, outFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    		InputStream in = req.raw().getPart("voiceInputUpload").getInputStream();			
+    		File outFile = new File("/Users/user/javaProjects/speechenabled/voiceInput.wav");
+    		Files.copy(in, outFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			
-			System.out.println("uploaded file stored");
+    		System.out.println("uploaded file stored");
 		} 
     	catch (Exception e)
 		{
