@@ -22,41 +22,41 @@ import spark.Response;
  */
 public class App 
 {
-    public static void main(String[] args)
-    {
-        System.out.println( "Hello World!" );
-        
-        staticFiles.location("/public");
-        
-        post("/audio", (req, res) -> handleAudio(req, res));
-        
-        //get("/audio", (req, res) -> handleAudio(req, res));
-    }
-    
-    private static String handleAudio(Request req, Response resp)
-    {
-    	System.out.println("handleAudio called");
-    	
-    	try
+	public static void main(String[] args)
+	{
+		System.out.println( "Hello World!" );
+
+		staticFiles.location("/public");
+
+		post("/audio", (req, res) -> handleAudio(req, res));
+
+		//get("/audio", (req, res) -> handleAudio(req, res));
+	}
+
+	private static String handleAudio(Request req, Response resp)
+	{
+		System.out.println("handleAudio called");
+
+		try
 		{
-    		MultipartConfigElement multipartConfigElement = new MultipartConfigElement("/tmp");
-    		req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
-    		
-    		InputStream in = req.raw().getPart("voiceInputUpload").getInputStream();			
-    		File outFile = new File("/Users/user/javaProjects/speechenabled/voiceInput.wav");
-    		Files.copy(in, outFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-			
-    		System.out.println("uploaded file stored");
+			MultipartConfigElement multipartConfigElement = new MultipartConfigElement("/tmp");
+			req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
+
+			InputStream in = req.raw().getPart("voiceInputUpload").getInputStream();			
+			File outFile = new File("/Users/user/javaProjects/speechenabled/voiceInput.wav");
+			Files.copy(in, outFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+			System.out.println("uploaded file stored");
 		} 
-    	catch (Exception e)
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-    	finally
-    	{
-    		
-    	}
-    	
-    	return "audio-uploaded";
-    }
+		finally
+		{
+
+		}
+
+		return "audio-uploaded";
+	}
 }
